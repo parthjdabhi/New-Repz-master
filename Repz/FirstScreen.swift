@@ -26,13 +26,27 @@ class FirstScreen: UIViewController, UITableViewDataSource, UITableViewDelegate 
         
         self.navigationItem.hidesBackButton = true
         
+        
+        //To load preloaded modes, when user opens application first time.
         if NSUserDefaults.standardUserDefaults().boolForKey("FIRST_TIME") == false {
+            
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "FIRST_TIME")
+            //Load Final Mode from plist
             for index in 0...21 {
                 addIcons(String(format: "Key_%d", index),object: PlistManager.sharedInFinal.getValueForKey(String(format: "Key_%d", index)) as! NSMutableDictionary)
             }
+            //Load Cover3 Mode from plist
             for index in 0...21 {
                 addIcons(String(format: "Key_%d", index),object: PlistManager.sharedInCover3.getValueForKey(String(format: "Key_%d", index)) as! NSMutableDictionary)
+            }
+            
+            
+            //To Load New Mode From Plist and save to core data.
+            
+            //// Step-6 Load that plist file into your core data when application opens first time. Thats it :) you have added new mode to REPZ. 
+            
+            for index in 0...21 {
+                addIcons(String(format: "Key_%d", index),object: PlistManager.sharedInNewMode.getValueForKey(String(format: "Key_%d", index)) as! NSMutableDictionary)
             }
             manager.saveIcons()
         }
@@ -40,6 +54,7 @@ class FirstScreen: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     override func viewWillAppear(animated: Bool) {
         loadSavedData()
+        newName.text = ""
     }
     
     func addIcons(key:String,object:NSMutableDictionary) {

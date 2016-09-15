@@ -10,6 +10,7 @@ import Foundation
 
 let plistFNameFinal:String = "MyData"
 let plistFNameC3:String = "Cover3"
+let plistFNewMode:String = "NewMode"
 
 struct Plist {
   
@@ -90,6 +91,7 @@ class PlistManager
 {
     static let sharedInFinal = PlistManager(file: plistFNameFinal)
     static let sharedInCover3 = PlistManager(file: plistFNameC3)
+    static let sharedInNewMode = PlistManager(file: plistFNewMode)
     
     let fileName:String!
     
@@ -99,112 +101,111 @@ class PlistManager
     } //This prevents others from using the default '()' initializer for this class.
 
     func startPlistManager() {
-    if let _ = Plist(name: fileName) {
-      print("[PlistManager] PlistManager started")
-    }
-    }
-
-    func addNewItemWithKey(key:String, value:AnyObject) {
-    print("[PlistManager] Starting to add item for key '\(key) with value '\(value)' . . .")
-    if !keyAlreadyExists(key) {
-      if let plist = Plist(name: fileName) {
-        
-        let dict = plist.getMutablePlistFile()!
-        dict[key] = value
-        
-        do {
-          try plist.addValuesToPlistFile(dict)
-        } catch {
-          print(error)
+        if let _ = Plist(name: fileName) {
+          print("[PlistManager] PlistManager started")
         }
-        print("[PlistManager] An Action has been performed. You can check if it went ok by taking a look at the current content of the plist file: ")
-        print("[PlistManager] \(plist.getValuesInPlistFile())")
-      } else {
-        print("[PlistManager] Unable to get Plist")
-      }
-    } else {
-      print("[PlistManager] Item for key '\(key)' already exists. Not saving Item. Not overwriting value.")
     }
 
-
+    func addNewItemWithKey(key:String, value:AnyObject)
+    {
+        print("[PlistManager] Starting to add item for key '\(key) with value '\(value)' . . .")
+        if !keyAlreadyExists(key) {
+          if let plist = Plist(name: fileName) {
+            
+            let dict = plist.getMutablePlistFile()!
+            dict[key] = value
+            
+            do {
+              try plist.addValuesToPlistFile(dict)
+            } catch {
+              print(error)
+            }
+            print("[PlistManager] An Action has been performed. You can check if it went ok by taking a look at the current content of the plist file: ")
+            print("[PlistManager] \(plist.getValuesInPlistFile())")
+          } else {
+            print("[PlistManager] Unable to get Plist")
+          }
+        } else {
+          print("[PlistManager] Item for key '\(key)' already exists. Not saving Item. Not overwriting value.")
+        }
     }
 
     func removeItemForKey(key:String) {
-    print("[PlistManager] Starting to remove item for key '\(key) . . .")
-    if keyAlreadyExists(key) {
-      if let plist = Plist(name: fileName) {
-        
-        let dict = plist.getMutablePlistFile()!
-        dict.removeObjectForKey(key)
-        
-        do {
-          try plist.addValuesToPlistFile(dict)
-        } catch {
-          print(error)
+        print("[PlistManager] Starting to remove item for key '\(key) . . .")
+        if keyAlreadyExists(key) {
+          if let plist = Plist(name: fileName) {
+            
+            let dict = plist.getMutablePlistFile()!
+            dict.removeObjectForKey(key)
+            
+            do {
+              try plist.addValuesToPlistFile(dict)
+            } catch {
+              print(error)
+            }
+            print("[PlistManager] An Action has been performed. You can check if it went ok by taking a look at the current content of the plist file: ")
+            print("[PlistManager] \(plist.getValuesInPlistFile())")
+          } else {
+            print("[PlistManager] Unable to get Plist")
+          }
+        } else {
+          print("[PlistManager] Item for key '\(key)' does not exists. Remove canceled.")
         }
-        print("[PlistManager] An Action has been performed. You can check if it went ok by taking a look at the current content of the plist file: ")
-        print("[PlistManager] \(plist.getValuesInPlistFile())")
-      } else {
-        print("[PlistManager] Unable to get Plist")
-      }
-    } else {
-      print("[PlistManager] Item for key '\(key)' does not exists. Remove canceled.")
-    }
 
     }
 
     func removeAllItemsFromPlist() {
 
-    if let plist = Plist(name: fileName) {
-      
-      let dict = plist.getMutablePlistFile()!
-      
-      let keys = Array(dict.allKeys)
-      
-      if keys.count != 0 {
-        dict.removeAllObjects()
-      } else {
-        print("[PlistManager] Plist is already empty. Removal of all items canceled.")
-      }
-      
-      do {
-        try plist.addValuesToPlistFile(dict)
-      } catch {
-        print(error)
-      }
-      print("[PlistManager] An Action has been performed. You can check if it went ok by taking a look at the current content of the plist file: ")
-      print("[PlistManager] \(plist.getValuesInPlistFile())")
-    } else {
-      print("[PlistManager] Unable to get Plist")
-    }
+        if let plist = Plist(name: fileName) {
+          
+          let dict = plist.getMutablePlistFile()!
+          
+          let keys = Array(dict.allKeys)
+          
+          if keys.count != 0 {
+            dict.removeAllObjects()
+          } else {
+            print("[PlistManager] Plist is already empty. Removal of all items canceled.")
+          }
+          
+          do {
+            try plist.addValuesToPlistFile(dict)
+          } catch {
+            print(error)
+          }
+          print("[PlistManager] An Action has been performed. You can check if it went ok by taking a look at the current content of the plist file: ")
+          print("[PlistManager] \(plist.getValuesInPlistFile())")
+        } else {
+          print("[PlistManager] Unable to get Plist")
+        }
     }
 
     func saveValue(value:AnyObject, forKey:String) {
 
-    if let plist = Plist(name: fileName) {
-      
-      let dict = plist.getMutablePlistFile()!
-      
-      if let dictValue = dict[forKey] {
-        
-        if value.dynamicType != dictValue.dynamicType {
-          print("[PlistManager] WARNING: You are saving a \(value.dynamicType) typed value into a \(dictValue.dynamicType) typed value. Best practice is to save Int values to Int fields, String values to String fields etc. (For example: '_NSContiguousString' to '__NSCFString' is ok too; they are both String types) If you believe that this mismatch in the types of the values is ok and will not break your code than disregard this message.")
+        if let plist = Plist(name: fileName) {
+          
+          let dict = plist.getMutablePlistFile()!
+          
+          if let dictValue = dict[forKey] {
+            
+            if value.dynamicType != dictValue.dynamicType {
+              print("[PlistManager] WARNING: You are saving a \(value.dynamicType) typed value into a \(dictValue.dynamicType) typed value. Best practice is to save Int values to Int fields, String values to String fields etc. (For example: '_NSContiguousString' to '__NSCFString' is ok too; they are both String types) If you believe that this mismatch in the types of the values is ok and will not break your code than disregard this message.")
+            }
+            
+            dict[forKey] = value
+            
+          }
+          
+          do {
+            try plist.addValuesToPlistFile(dict)
+          } catch {
+            print(error)
+          }
+          print("[PlistManager] An Action has been performed. You can check if it went ok by taking a look at the current content of the plist file: ")
+          print("[PlistManager] \(plist.getValuesInPlistFile())")
+        } else {
+          print("[PlistManager] Unable to get Plist")
         }
-        
-        dict[forKey] = value
-        
-      }
-      
-      do {
-        try plist.addValuesToPlistFile(dict)
-      } catch {
-        print(error)
-      }
-      print("[PlistManager] An Action has been performed. You can check if it went ok by taking a look at the current content of the plist file: ")
-      print("[PlistManager] \(plist.getValuesInPlistFile())")
-    } else {
-      print("[PlistManager] Unable to get Plist")
-    }
     }
 
     func getValueForKey(key:String) -> AnyObject? {

@@ -1701,7 +1701,6 @@ class SecondScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
                 selectedIcon = imageView
                 return
             }
-            
         }
     }
 
@@ -1807,6 +1806,7 @@ class SecondScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         if identifier! == "playRecord" {
             manager.saveIcons()
             let thirdController:ThirdScreen = segue.destinationViewController as! ThirdScreen
+            thirdController.isBackToListing  = true
             thirdController.iconName = self.iconName
         }
     }

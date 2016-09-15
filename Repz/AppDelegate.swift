@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PlistManager.sharedInFinal.startPlistManager()
         PlistManager.sharedInCover3.startPlistManager()
         
-        print(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0])
+        print("Visit This Path to find your Recorded/Existing modes : \(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0])")
         print("Width : \(UIScreen.mainScreen().bounds.width) Height: \(UIScreen.mainScreen().bounds.height)")
         
         return true

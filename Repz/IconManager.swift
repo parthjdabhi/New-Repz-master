@@ -34,6 +34,9 @@ class IconManager {
         
         let managedContext = delegate.managedObjectContext
         
+        //// Step-4 Set True To save your recodes to Plist files in document directory
+        var isWantToSaveThisMode = false
+        
         //2
         let entity =  NSEntityDescription.entityForName("Icon", inManagedObjectContext:managedContext)
         var index = 0;
@@ -48,14 +51,18 @@ class IconManager {
             iconObject.setValue(icon.offset.x, forKey: "offsetX")
             iconObject.setValue(icon.offset.y, forKey: "offsetY")
             
-//            let dict = NSMutableDictionary()
-//            dict.setObject(icon.name, forKey: "name")
-//            //dict.setObject("Cover3", forKey: "name")
-//            dict.setValue(icon.fileName, forKey: "fileName")
-//            dict.setValue(icon.startPos.x, forKey: "startPosX")
-//            dict.setValue(icon.startPos.y, forKey: "startPosY")
-//            dict.setValue(icon.offset.x, forKey: "offsetX")
-//            dict.setValue(icon.offset.y, forKey: "offsetY")
+            let dict = NSMutableDictionary()
+            
+            if isWantToSaveThisMode == true {
+                dict.setObject(icon.name, forKey: "name")
+                //dict.setObject("Cover3", forKey: "name")
+                dict.setValue(icon.fileName, forKey: "fileName")
+                dict.setValue(icon.startPos.x, forKey: "startPosX")
+                dict.setValue(icon.startPos.y, forKey: "startPosY")
+                dict.setValue(icon.offset.x, forKey: "offsetX")
+                dict.setValue(icon.offset.y, forKey: "offsetY")
+            }
+            
             
             if icon.path.count != 0 {
                 var dataArray:[NSValue] = []
@@ -68,13 +75,23 @@ class IconManager {
                 let data = NSKeyedArchiver.archivedDataWithRootObject(dataArray as AnyObject)
                 iconObject.setValue(data, forKey: "path")
                 
-                //dict.setValue(data, forKey: "path")
+                if isWantToSaveThisMode == true {
+                    dict.setValue(data, forKey: "path")
+                }
             }
-//            print("iconObject=> ", iconObject)
-//            print("Dict=> ", dict)
-//            
-//            PlistManager.sharedInCover3.addNewItemWithKey(String(format: "Key_%d", index), value: dict)
-//            print(PlistManager.sharedInCover3.getValueForKey(String(format: "Key_%d", index)))
+            print("iconObject=> ", iconObject)
+            print("Dict=> ", dict)
+            
+            if isWantToSaveThisMode == true {
+                
+                //// Step-5 update you sharedIn variable to write in that pliast
+                // make sure you are usin empty pliast file (it will not overwrite any values)
+                // after written plist file add that plist file into project and load that in viewdidload methd of FirstScreen view controller
+                
+                PlistManager.sharedInNewMode.addNewItemWithKey(String(format: "Key_%d", index), value: dict)
+                print(PlistManager.sharedInNewMode.getValueForKey(String(format: "Key_%d", index)))
+            }
+            
             index += 1
             do {
                 try managedContext.save()

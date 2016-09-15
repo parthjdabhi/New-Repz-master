@@ -29,6 +29,7 @@ class ThirdScreen : UIViewController {
     var kXRate: CGFloat = 0.7001//0.667 //1.2998
     
     var iconName:String = ""
+    var isBackToListing = false
     let delegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     static var playName:String = ""
@@ -78,8 +79,16 @@ class ThirdScreen : UIViewController {
     }
     
     func goToBack() {
-
-        self.navigationController?.popViewControllerAnimated(false)
+        if isBackToListing == true {
+//            if let allVC:Array<UIViewController> = self.navigationController?.viewControllers
+//            where allVC.count > 2 {
+//                let firstVC = allVC[]
+//                self.navigationController?.popToViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
+//            }
+            self.navigationController?.popToRootViewControllerAnimated(true)
+        } else {
+            self.navigationController?.popViewControllerAnimated(false)
+        }
     }
     
     func goToHome() {
