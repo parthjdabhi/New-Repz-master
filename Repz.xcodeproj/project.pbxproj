@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E4865DF1D8A967A00E5E306 /* NewModeEmpty.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E4865DE1D8A967A00E5E306 /* NewModeEmpty.plist */; };
-		5E4865E31D8A9C2500E5E306 /* NewMode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E4865E21D8A9C2500E5E306 /* NewMode.plist */; };
+		5E4865DF1D8A967A00E5E306 /* NewMode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E4865DE1D8A967A00E5E306 /* NewMode.plist */; };
 		5E5281CB1D759A0B00097142 /* MyNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5281CA1D759A0B00097142 /* MyNavigationBar.swift */; };
 		5E5281D51D75EBE300097142 /* Cover3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E5281D41D75EBE300097142 /* Cover3.plist */; };
 		8013BA2C1D60F20B0073EFC1 /* SecondScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8013BA2B1D60F20B0073EFC1 /* SecondScreen.swift */; };
@@ -50,8 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5E4865DE1D8A967A00E5E306 /* NewModeEmpty.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewModeEmpty.plist; sourceTree = "<group>"; };
-		5E4865E21D8A9C2500E5E306 /* NewMode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewMode.plist; sourceTree = "<group>"; };
+		5E4865DE1D8A967A00E5E306 /* NewMode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewMode.plist; sourceTree = "<group>"; };
 		5E5281CA1D759A0B00097142 /* MyNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNavigationBar.swift; sourceTree = "<group>"; };
 		5E5281D41D75EBE300097142 /* Cover3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Cover3.plist; sourceTree = "<group>"; };
 		8013BA2B1D60F20B0073EFC1 /* SecondScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondScreen.swift; sourceTree = "<group>"; };
@@ -123,8 +121,7 @@
 				959D13611D6B468800401BEC /* Constant.swift */,
 				E19BA3A31D6DAE0F00E8768E /* MyData.plist */,
 				5E5281D41D75EBE300097142 /* Cover3.plist */,
-				5E4865E21D8A9C2500E5E306 /* NewMode.plist */,
-				5E4865DE1D8A967A00E5E306 /* NewModeEmpty.plist */,
+				5E4865DE1D8A967A00E5E306 /* NewMode.plist */,
 				E19BA3A41D6DAE0F00E8768E /* PlistManager.swift */,
 			);
 			name = Utility;
@@ -315,8 +312,7 @@
 				DA6AE7B21D88B053001E5B65 /* Spearfish_Football_Field.png in Resources */,
 				DA012F561D5FC1F000ADBF02 /* Assets.xcassets in Resources */,
 				E19BA3A51D6DAE0F00E8768E /* MyData.plist in Resources */,
-				5E4865E31D8A9C2500E5E306 /* NewMode.plist in Resources */,
-				5E4865DF1D8A967A00E5E306 /* NewModeEmpty.plist in Resources */,
+				5E4865DF1D8A967A00E5E306 /* NewMode.plist in Resources */,
 				DA7CB88C1D778F43008BA705 /* Field.png in Resources */,
 				DA012F511D5FC1F000ADBF02 /* Main.storyboard in Resources */,
 			);
