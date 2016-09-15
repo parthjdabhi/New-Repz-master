@@ -43,11 +43,11 @@ class FirstScreen: UIViewController, UITableViewDataSource, UITableViewDelegate 
             
             //To Load New Mode From Plist and save to core data.
             
-            //// Step-6 Load that plist file into your core data when application opens first time. Thats it :) you have added new mode to REPZ. 
+            //// Step-6 Load that plist file into your core data when application opens first time. Thats it :) you have added new mode to REPZ.
+//            for index in 0...21 {
+//                addIcons(String(format: "Key_%d", index),object: PlistManager.sharedInNewMode.getValueForKey(String(format: "Key_%d", index)) as! NSMutableDictionary)
+//            }
             
-            for index in 0...21 {
-                addIcons(String(format: "Key_%d", index),object: PlistManager.sharedInNewMode.getValueForKey(String(format: "Key_%d", index)) as! NSMutableDictionary)
-            }
             manager.saveIcons()
         }
     }
