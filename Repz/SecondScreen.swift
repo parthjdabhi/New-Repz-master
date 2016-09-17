@@ -23,6 +23,9 @@ class SecondScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
     var iconCount:Int = 0
     var pickerDataSource:[String] = [];
 
+    var isWantToShowSquarePlayer = true
+    var squarePlayerIndex:Int = 0
+    
     enum LayoutType {
         case LayoutType_1
         case LayoutType_2
@@ -1609,6 +1612,7 @@ class SecondScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
     }
     //Common method to initialize icons with type
     func initIconWithType(iconType:IconType, position:CGPoint) -> Void {
+        
         if iconType == IconType.Circle {
             let circle:Icon = Icon()
             circle.image = UIImage(named: "Circle.png")
@@ -1822,7 +1826,7 @@ class SecondScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
                 
                 //Remove this comment after made Cover 3 layout
                 //initIconWithType(index % 2 == 0 ? IconType.Cross : IconType.Circle /*iconType*/, position: CGPointFromString(iconPosArray.objectAtIndex(index) as! String))
-                initIconWithType(index <= 10 ? IconType.Cross : IconType.Circle /*iconType*/, position: CGPointFromString(iconPosArray.objectAtIndex(index) as! String))
+                initIconWithType((index <= 10 ? IconType.Cross : index == 11 ? IconType.Square : IconType.Circle) /*iconType*/, position: CGPointFromString(iconPosArray.objectAtIndex(index) as! String))
             }
         layoutIcons()
     }
@@ -1865,6 +1869,7 @@ class SecondScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
             showAlert("Please enter layout name")
         }
     }
+    
     @IBAction func onSave(sender: AnyObject) {
         if layoutName.text?.characters.count > 0 {
             showAlert("Please save the layout first. If you don't want to save layout then clear the layout field")
@@ -1873,6 +1878,7 @@ class SecondScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         iconName = nameField.text!
         self.performSegueWithIdentifier("playRecord", sender: nil)
     }
+    
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -1884,6 +1890,7 @@ class SecondScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerDataSource[row]
     }
+    
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         clearDrawLine()
@@ -1920,6 +1927,7 @@ class SecondScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
             openLayoutWithIndex(row + 1)
         }
     }
+    
     func showAlert(message:String) {
         let alertController:UIAlertController = UIAlertController(title: message, message: nil, preferredStyle: .Alert)
         let alertAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
