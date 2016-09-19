@@ -795,7 +795,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2463"
             endingLineNumber = "2463"
-            landmarkName = "comingOutAction(_:)"
+            landmarkName = "rightHashButton(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -811,7 +811,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2431"
             endingLineNumber = "2431"
-            landmarkName = "rightHashButton(_:)"
+            landmarkName = "leftHashButton(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -827,7 +827,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2399"
             endingLineNumber = "2399"
-            landmarkName = "leftHashButton(_:)"
+            landmarkName = "centerFieldButton(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -843,7 +843,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2362"
             endingLineNumber = "2362"
-            landmarkName = "centerFieldButton(_:)"
+            landmarkName = "downAction(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

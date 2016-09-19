@@ -13,6 +13,7 @@ import CoreData
 class IconManager {
     
     static var manager:IconManager? = nil
+    static var isWantToSaveThisMode = true
     
     static func sharedManager() -> IconManager {
         if manager == nil {
@@ -35,7 +36,7 @@ class IconManager {
         let managedContext = delegate.managedObjectContext
         
         //// Step-4 Set True To save your recodes to Plist files in document directory
-        var isWantToSaveThisMode = false
+        //var isWantToSaveThisMode = false
         
         //2
         let entity =  NSEntityDescription.entityForName("Icon", inManagedObjectContext:managedContext)
@@ -53,7 +54,7 @@ class IconManager {
             
             let dict = NSMutableDictionary()
             
-            if isWantToSaveThisMode == true {
+            if IconManager.isWantToSaveThisMode == true {
                 dict.setObject(icon.name, forKey: "name")
                 //dict.setObject("Cover3", forKey: "name")
                 dict.setValue(icon.fileName, forKey: "fileName")
@@ -75,14 +76,14 @@ class IconManager {
                 let data = NSKeyedArchiver.archivedDataWithRootObject(dataArray as AnyObject)
                 iconObject.setValue(data, forKey: "path")
                 
-                if isWantToSaveThisMode == true {
+                if IconManager.isWantToSaveThisMode == true {
                     dict.setValue(data, forKey: "path")
                 }
             }
             print("iconObject=> ", iconObject)
             print("Dict=> ", dict)
             
-            if isWantToSaveThisMode == true {
+            if IconManager.isWantToSaveThisMode == true {
                 
                 //// Step-5 update you sharedIn variable to write in that pliast
                 // make sure you are usin empty pliast file (it will not overwrite any values)

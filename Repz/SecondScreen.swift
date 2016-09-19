@@ -22,8 +22,6 @@ class SecondScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
     var iconName:String = ""
     var iconCount:Int = 0
     var pickerDataSource:[String] = [];
-
-    var isWantToShowSquarePlayer = true
     var squarePlayerIndex:Int = 0
     
     enum LayoutType {
@@ -184,6 +182,10 @@ class SecondScreen: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        // MARK: - To Save This Play Mode
+        IconManager.isWantToSaveThisMode  = true
         
         iconType = IconType.Cross
         iconTypeSquare = IconType.Square
